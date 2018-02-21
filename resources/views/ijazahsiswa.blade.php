@@ -29,7 +29,15 @@
                   <i class="fa fa-pencil"></i> 
                 &nbsp; Rubah Status
       </button><br>
-      <h4 style="margin:10;margin-bottom:0;">Status : <strong>Sudah disalin</strong></h4> &nbsp;
+      <h4 style="margin:10;margin-bottom:0;">Status : <strong>
+@if($idnilai->status == 1)
+<i class="btn-info">Sudah Disalin</i>
+@elseif($idnilai->status == 2)
+<i class="btn-info">Sudah Diarsip</i>
+@else
+<i class="btn-danger">Belum Disalin</i>
+@endif
+      </strong></h4> &nbsp;
     </div>
   </div>
 </div>

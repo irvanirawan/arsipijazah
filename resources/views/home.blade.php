@@ -23,7 +23,7 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{count(DB::table('siswa')->get())}}</h3>
 
               <p>Siswa</p>
             </div>
@@ -38,7 +38,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>3</h3>
+              <h3>{{count(DB::table('kelas')->get())}}</h3>
 
               <p>Kelas</p>
             </div>
@@ -53,7 +53,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3>{{count(DB::table('nilai')->where('status','=',2)->get())}}</h3>
 
               <p>Ijazah Telah dibagikan</p>
             </div>
@@ -68,7 +68,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{count(DB::table('nilai')->where('status','=',1)->get())}}</h3> 
 
               <p>Ijazah Tertahan</p>
             </div>

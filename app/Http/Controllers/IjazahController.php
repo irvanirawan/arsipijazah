@@ -50,14 +50,14 @@ class IjazahController extends Controller
             $name = $image->getClientOriginalName();
             $destinationPath = public_path('/image');
             $image->move($destinationPath, $name);
-            DB::table('nilai')->insert([
+            DB::table('nilai')->where('id','=',$request['id'])->update([
                 'status' => $request['field2'],
                 'bukti' => $name,
                 'updated_at' => date('Y-m-d H:i:s')
         ]);
         }
         else {
-                DB::table('nilai')->insert([
+                DB::table('nilai')->where('id','=',$request['id'])->update([
                     'status' => $request['field2'],
                     'updated_at' => date('Y-m-d H:i:s')
             ]);
