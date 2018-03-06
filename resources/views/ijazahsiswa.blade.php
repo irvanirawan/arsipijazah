@@ -25,10 +25,10 @@
       <h4 style="margin:10;margin-top:0">NIS : <strong>{{$siswa->nis}}</strong></h4> &nbsp;
     </div>
     <div class="pull-right">
-      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="buat()">
+      <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="buat()">
                   <i class="fa fa-pencil"></i> 
                 &nbsp; Rubah Status
-      </button><br>
+      </button><br> -->
       <h4 style="margin:10;margin-bottom:0;">Status : <strong>
 @if($idnilai->status == 1)
 <i class="btn-info">Sudah Disalin</i>

@@ -48,7 +48,7 @@ class IjazahController extends Controller
       if ($request->hasFile('file')) {
             $image = $request->file('file');
             $name = $image->getClientOriginalName();
-            $destinationPath = public_path('/image');
+            $destinationPath = public_path('image');
             $image->move($destinationPath, $name);
             DB::table('nilai')->where('id','=',$request['id'])->update([
                 'status' => $request['field2'],
@@ -146,6 +146,70 @@ class IjazahController extends Controller
     }
     // dd($arrdata); 
     return view('ijazahsiswa',['kelas'=>$id,'siswa'=>$siswa,'matpel'=>$matpel,'arrdata'=>$arrdata,'idnilai'=>$idnilai]);
+  }
+
+  /**
+   * Display a listing of the resource.
+   *
+   * @return Response
+   */
+  public function upload($id)
+  {
+    $matpel = null;
+    $data = DB::table('nilai')
+                              ->leftjoin('siswa','nilai.siswa','=','siswa.id')
+                              ->leftjoin('kelas','nilai.kelas','=','kelas.id')
+                              ->leftjoin('tahun_ajaran','kelas.tahun_ajaran','=','tahun_ajaran.id')
+                              ->where('kelas.kode','=',$id)
+                              ->select('nilai.*','siswa.nama','siswa.nis','kelas.kode','kelas.nama_kelas')
+                              ->get();
+                              // dd($data);
+                              // dd(count($data) == 0); 
+    return view('arsipijazah',['data'=>$data,'matpel'=>$matpel]);
+  }
+
+  /**
+   * Display a listing of the resource.
+   *
+   * @return Response
+   */
+  public function uploadijazah(Request $request)
+  {
+    // DB::table('nilai')->where('id','=',$request['id'])->update([
+    //                         'ijazah' => $re
+    //   ]);
+            $image = $request->file('file');
+            $name = $image->getClientOriginalName();
+            $destinationPath = public_path('image');
+            $image->move($destinationPath, $name);
+            DB::table('nilai')->where('id','=',$request['id'])->update([
+                'ijazah' => $name,
+                'status' => 1,
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+    return redirect()->back();
+  }
+
+  /**
+   * Display a listing of the resource.
+   *
+   * @return Response
+   */
+  public function uploadserahterima(Request $request)
+  {
+    // DB::table('nilai')->where('id','=',$request['id'])->update([
+    //                         'ijazah' => $re
+    //   ]);
+            $image = $request->file('file');
+            $name = $image->getClientOriginalName();
+            $destinationPath = public_path('image');
+            $image->move($destinationPath, $name);
+            DB::table('nilai')->where('id','=',$request['id'])->update([
+                'bukti' => $name,
+                'status' => 2,
+                'updated_at' => date('Y-m-d H:i:s')
+            ]);
+    return redirect()->back();
   }
   
 }

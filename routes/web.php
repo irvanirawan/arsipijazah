@@ -91,13 +91,15 @@ Route::group(['prefix' => 'matapelajaran', 'middleware' => ['role:superadmin|gur
     // Route::get('/manage', ['middleware' => ['permission:manage-admins'], 'uses' => 'AdminController@manageAdmins']);
 });
 Route::group(['prefix' => 'ijazah', 'middleware' => ['role:superadmin|kepsek']], function() {
-    Route::get('/', ['as'=>'ijazah','uses'=>'IjazahController@index1']);
+    Route::get('/arsip/{id}', ['as'=>'ijazah','uses'=>'IjazahController@upload']);
     Route::get('/{id}/{matpel}', ['as'=>'ijazahdetail','uses'=>'IjazahController@index']);
     Route::get('/siswa/{id}/{siswa}', ['as'=>'ijazahdetail','uses'=>'IjazahController@persiswa']);
     Route::post('/saveijazah', ['as'=>'saveijazah','uses'=>'IjazahController@store']);
     Route::post('/editijazah', ['as'=>'saveeditijazah','uses'=>'IjazahController@update']);
     Route::get('/put/{id}', ['as'=>'putijazah','uses'=>'IjazahController@show']);
     Route::get('/delete/{id}', ['as'=>'deleteijazah','uses'=>'IjazahController@destroy']);
+    Route::post('/uploadijazah', ['as'=>'uploadijazah','uses'=>'IjazahController@uploadijazah']);
+    Route::post('/uploadserahterima', ['as'=>'uploadserahterima','uses'=>'IjazahController@uploadserahterima']);
     // Route::get('/manage', ['middleware' => ['permission:manage-admins'], 'uses' => 'AdminController@manageAdmins']);
 });
 

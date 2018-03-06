@@ -53,7 +53,20 @@
           </a>
           <ul class="treeview-menu">
 @foreach(DB::table('kelas')->join('tahun_ajaran','kelas.tahun_ajaran','=','tahun_ajaran.id')->where('tahun_ajaran.status','=',2)->select('kelas.*')->get() as $key => $kls)
-            <li><a href="{{url('ijazah')}}/{{$kls->kode}}/{{DB::table('matpel')->first()->id}}"><i class="fa fa-circle-o"></i> {{$kls->nama_kelas}}</a></li>
+            <li><a href="/ijazah/{{$kls->kode}}/{{DB::table('matpel')->first()->id}}"><i class="fa fa-circle-o"></i> {{$kls->nama_kelas}}</a></li>
+@endforeach
+          </ul>
+        </li>
+        <li class="treeview {{ Request::path() == 'nilai' ? 'active' : '' }}">
+          <a href="#">
+            <i class="fa fa-file"></i> <span>Arsip</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+@foreach(DB::table('kelas')->join('tahun_ajaran','kelas.tahun_ajaran','=','tahun_ajaran.id')->where('tahun_ajaran.status','=',2)->select('kelas.*')->get() as $key => $kls)
+            <li><a href="/ijazah/arsip/{{$kls->kode}}"><i class="fa fa-circle-o"></i> {{$kls->nama_kelas}}</a></li>
 @endforeach
           </ul>
         </li>
